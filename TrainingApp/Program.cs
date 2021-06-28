@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 
 namespace TrainingApp
 {
@@ -6,7 +7,16 @@ namespace TrainingApp
     {
         static void Main(string[] args)
         {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            Console.WriteLine(connectionString);
             Console.WriteLine("Hello World!");
+
+            Console.ReadKey();
         }
     }
 }
