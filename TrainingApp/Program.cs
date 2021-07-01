@@ -14,7 +14,6 @@ namespace TrainingApp
             string connectionString = configuration.GetConnectionString("DefaultConnection");
 
             Console.WriteLine(connectionString);
-            Console.WriteLine("Hello World!");
 
             Console.ReadKey();
         }
