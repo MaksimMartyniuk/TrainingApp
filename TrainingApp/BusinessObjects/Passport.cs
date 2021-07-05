@@ -1,14 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TrainingApp.BusinessObjects
 {
 	public class Passport
 	{
-		private Guid id = new();
-		public Guid Id
-		{
-			get { return id; }
-		}
+		public Guid Id { get; private set; }
 
 		private string series;
 		public string Series
