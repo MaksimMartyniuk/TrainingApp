@@ -1,26 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using TrainingApp.BusinessObjects;
 
-namespace TrainingApp.Repositories.MSSQL
+namespace TrainingApp.MSSQL
 {
 	public class MSSQLContext : DbContext
 	{
-		public MSSQLContext()
+		private string connectionString;
+		public MSSQLContext(string conn)
 		{
+			connectionString = conn;
 			this.Database.EnsureCreated();
 		}
+
 		public DbSet<User> Users { get; set; }
 		public DbSet<Passport> Passports { get; set; }
 		public DbSet<Order> Orders { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			IConfigurationRoot configuration = new ConfigurationBuilder()
-				.AddJsonFile("appsettings.json")
-				.Build();
-
-			optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultSQLConnection"));
+			optionsBuilder.UseSqlServer(connectionString);
 		}
 	}
 }

@@ -2,22 +2,22 @@
 using System;
 using System.Collections.Generic;
 using TrainingApp.BusinessObjects;
-using TrainingApp.Factories;
+using TrainingApp.MSSQL;
 
-namespace TrainingApp.Repositories.MSSQL
+namespace TrainingApp.Repositories
 {
 	public class UserEntityMSSQLRepository : IRepository<User>
 	{
-		private IFactory<MSSQLContext> factory;
+		private string connectionString;
 
-		public UserEntityMSSQLRepository(IFactory<MSSQLContext> factory)
+		public UserEntityMSSQLRepository(string conn)
 		{
-			this.factory = factory;
+			connectionString = conn;
 		}
 
 		public void Create(User item)
 		{
-			using (MSSQLContext context = factory.Create())
+			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
 				context.Users.Add(item);
 				context.SaveChanges();
@@ -25,7 +25,7 @@ namespace TrainingApp.Repositories.MSSQL
 		}
 		public User GetObject(Guid id)
 		{
-			using (MSSQLContext context = factory.Create())
+			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
 				return context.Users.Find(id);
 			}
@@ -33,7 +33,7 @@ namespace TrainingApp.Repositories.MSSQL
 
 		public void Update(User item)
 		{
-			using (MSSQLContext context = factory.Create())
+			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
 				context.Entry(item).State = EntityState.Modified;
 				context.SaveChanges();
@@ -42,7 +42,7 @@ namespace TrainingApp.Repositories.MSSQL
 
 		public void Delete(Guid id)
 		{
-			using (MSSQLContext context = factory.Create())
+			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
 				User user = context.Users.Find(id);
 				if (user != null)
@@ -55,7 +55,7 @@ namespace TrainingApp.Repositories.MSSQL
 
 		public IEnumerable<User> GetObjectList()
 		{
-			using (MSSQLContext context = factory.Create())
+			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
 				return context.Users;
 			}
