@@ -1,6 +1,6 @@
-﻿using TrainingApp.BusinessObjects;
+﻿using AbstractDataLayer.BusinessObjects;
 
-namespace TrainingApp.Factories
+namespace AbstractDataLayer.Factories
 {
 	public class PassportFactory : IBusinessObjectFactory<ObjectBase>
 	{
