@@ -16,17 +16,17 @@ namespace JSONDataLayer.Factories
 
 		public IRepository<ObjectBase> CreateOrderRepository()
 		{
-			return new EntityJSONRepository(rootPath + "\\Order");
+			return new EntityJSONRepository(rootPath + "\\Orders");
 		}
 
 		public IRepository<ObjectBase> CreatePassportRepository()
 		{
-			return new EntityJSONRepository(rootPath + "\\Passport");
+			return new EntityJSONRepository(rootPath + "\\Passports");
 		}
 
 		public IRepository<ObjectBase> CreateUserRepository()
 		{
-			return new EntityJSONRepository(rootPath + "\\User");
+			return new EntityJSONRepository(rootPath + "\\Users");
 		}
 	}
 }
