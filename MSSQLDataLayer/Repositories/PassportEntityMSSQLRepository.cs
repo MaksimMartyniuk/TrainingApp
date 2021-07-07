@@ -1,4 +1,5 @@
 ﻿using AbstractDataLayer.BusinessObjects;
+using AbstractDataLayer.Helpers;
 using AbstractDataLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MSSQLDataLayer.MSSQL;
@@ -22,7 +23,7 @@ namespace MSSQLDataLayer.Repositories
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				if ((passport = ToPassport(item)) == null)
+				if ((passport = ObjectBaseConveter.ToPassport(item)) == null)
 					return;
 
 				context.Passports.Add(passport);
@@ -41,7 +42,7 @@ namespace MSSQLDataLayer.Repositories
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				if ((passport = ToPassport(item)) == null)
+				if ((passport = ObjectBaseConveter.ToPassport(item)) == null)
 					return;
 
 				context.Entry(item).State = EntityState.Modified;
@@ -67,20 +68,6 @@ namespace MSSQLDataLayer.Repositories
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
 				return context.Passports;
-			}
-		}
-
-		private Passport ToPassport(ObjectBase item)
-		{
-			Passport passport = item as Passport;
-			if (passport == null)
-			{
-				Console.WriteLine("Passport item is not valid");
-				return null;
-			}
-			else
-			{
-				return passport;
 			}
 		}
 	}

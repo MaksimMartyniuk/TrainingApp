@@ -1,4 +1,5 @@
 ﻿using AbstractDataLayer.BusinessObjects;
+using AbstractDataLayer.Helpers;
 using AbstractDataLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MSSQLDataLayer.MSSQL;
@@ -22,7 +23,7 @@ namespace MSSQLDataLayer.Repositories
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				if ((user = ToUser(item)) == null)
+				if ((user = ObjectBaseConveter.ToUser(item)) == null)
 					return;
 
 				context.Users.Add(user);
@@ -41,7 +42,7 @@ namespace MSSQLDataLayer.Repositories
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				if ((user = ToUser(item)) == null)
+				if ((user = ObjectBaseConveter.ToUser(item)) == null)
 					return;
 
 				context.Entry(item).State = EntityState.Modified;
@@ -67,20 +68,6 @@ namespace MSSQLDataLayer.Repositories
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
 				return context.Users;
-			}
-		}
-
-		private User ToUser(ObjectBase item)
-		{
-			User user = item as User;
-			if (user == null)
-			{
-				Console.WriteLine("User item is not valid");
-				return null;
-			}
-			else
-			{
-				return user;
 			}
 		}
 	}

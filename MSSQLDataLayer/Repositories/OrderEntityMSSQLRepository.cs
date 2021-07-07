@@ -1,4 +1,5 @@
 ﻿using AbstractDataLayer.BusinessObjects;
+using AbstractDataLayer.Helpers;
 using AbstractDataLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MSSQLDataLayer.MSSQL;
@@ -22,7 +23,7 @@ namespace MSSQLDataLayer.Repositories
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				if ((order = ToOrder(item)) == null)
+				if ((order = ObjectBaseConveter.ToOrder(item)) == null)
 					return;
 
 				context.Orders.Add(order);
@@ -41,7 +42,7 @@ namespace MSSQLDataLayer.Repositories
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				if ((order = ToOrder(item)) == null)
+				if ((order = ObjectBaseConveter.ToOrder(item)) == null)
 					return;
 
 				context.Entry(order).State = EntityState.Modified;
@@ -67,20 +68,6 @@ namespace MSSQLDataLayer.Repositories
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
 				return context.Orders;
-			}
-		}
-
-		private Order ToOrder(ObjectBase item)
-		{
-			Order order = item as Order;
-			if (order == null)
-			{
-				Console.WriteLine("Order item is not valid");
-				return null;
-			}
-			else
-			{
-				return order;
 			}
 		}
 	}
