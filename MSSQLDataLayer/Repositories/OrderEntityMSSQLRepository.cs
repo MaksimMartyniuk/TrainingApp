@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace MSSQLDataLayer.Repositories
 {
+	//поискать метод с генериком для работы с контекстом
 	public class OrderEntityMSSQLRepository : IRepository<ObjectBase>
 	{
 		private Order order;

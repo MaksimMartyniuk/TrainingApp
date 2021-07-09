@@ -1,4 +1,4 @@
-﻿namespace AbstractDataLayer.Enums
+﻿namespace DataLayer.Enums
 {
 	public enum OrderStatusEnum
 	{

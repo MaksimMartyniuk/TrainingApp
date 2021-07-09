@@ -1,13 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataLayer.BusinessObjects;
+using DataLayer.Helpers;
+using DataLayer.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using TrainingApp.BusinessObjects;
-using TrainingApp.MSSQL;
 
-namespace TrainingApp.Repositories
+namespace DataLayer.MSSQL.Repositories
 {
-	public class UserEntityMSSQLRepository : IRepository<User>
+	public class UserEntityMSSQLRepository : IRepository<ObjectBase>
 	{
+		private User user;
+
 		private string connectionString;
 
 		public UserEntityMSSQLRepository(string conn)
@@ -15,15 +18,19 @@ namespace TrainingApp.Repositories
 			connectionString = conn;
 		}
 
-		public void Create(User item)
+		public void Create(ObjectBase item)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				context.Users.Add(item);
+				if ((user = ObjectBaseConveter.ToUser(item)) == null)
+					return;
+				context.Set<ObjectBase>().Add(item);
+
+				//context.Users.Add(user);
 				context.SaveChanges();
 			}
 		}
-		public User GetObject(Guid id)
+		public ObjectBase GetObject(Guid id)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
@@ -31,10 +38,13 @@ namespace TrainingApp.Repositories
 			}
 		}
 
-		public void Update(User item)
+		public void Update(ObjectBase item)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
+				if ((user = ObjectBaseConveter.ToUser(item)) == null)
+					return;
+
 				context.Entry(item).State = EntityState.Modified;
 				context.SaveChanges();
 			}
@@ -53,7 +63,7 @@ namespace TrainingApp.Repositories
 			}
 		}
 
-		public IEnumerable<User> GetObjectList()
+		public IEnumerable<ObjectBase> GetObjectList()
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{

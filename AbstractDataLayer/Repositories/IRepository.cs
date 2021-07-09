@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AbstractDataLayer.Repositories
+namespace DataLayer.Repositories
 {
 	public interface IRepository<T>
 		where T : class

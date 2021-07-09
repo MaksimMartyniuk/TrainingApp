@@ -1,6 +1,6 @@
-﻿using AbstractDataLayer.Repositories;
+﻿using DataLayer.Repositories;
 
-namespace AbstractDataLayer.Factories
+namespace DataLayer.Factories
 {
 	public interface IRepositoryAbstractFactory<T>
 		where T : class

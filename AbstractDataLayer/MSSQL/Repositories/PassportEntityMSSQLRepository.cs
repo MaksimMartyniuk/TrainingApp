@@ -1,13 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataLayer.BusinessObjects;
+using DataLayer.Helpers;
+using DataLayer.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using TrainingApp.BusinessObjects;
-using TrainingApp.MSSQL;
 
-namespace TrainingApp.Repositories
+namespace DataLayer.MSSQL.Repositories
 {
-	public class PassportEntityMSSQLRepository : IRepository<Passport>
+	public class PassportEntityMSSQLRepository : IRepository<ObjectBase>
 	{
+		private Passport passport;
+
 		private string connectionString;
 
 		public PassportEntityMSSQLRepository(string conn)
@@ -15,15 +18,18 @@ namespace TrainingApp.Repositories
 			connectionString = conn;
 		}
 
-		public void Create(Passport item)
+		public void Create(ObjectBase item)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				context.Passports.Add(item);
+				if ((passport = ObjectBaseConveter.ToPassport(item)) == null)
+					return;
+
+				context.Passports.Add(passport);
 				context.SaveChanges();
 			}
 		}
-		public Passport GetObject(Guid id)
+		public ObjectBase GetObject(Guid id)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
@@ -31,10 +37,13 @@ namespace TrainingApp.Repositories
 			}
 		}
 
-		public void Update(Passport item)
+		public void Update(ObjectBase item)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
+				if ((passport = ObjectBaseConveter.ToPassport(item)) == null)
+					return;
+
 				context.Entry(item).State = EntityState.Modified;
 				context.SaveChanges();
 			}
@@ -53,7 +62,7 @@ namespace TrainingApp.Repositories
 			}
 		}
 
-		public IEnumerable<Passport> GetObjectList()
+		public IEnumerable<ObjectBase> GetObjectList()
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{

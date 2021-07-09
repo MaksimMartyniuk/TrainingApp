@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TrainingApp.BusinessObjects;
+﻿using DataLayer.BusinessObjects;
+using Microsoft.EntityFrameworkCore;
 
-namespace TrainingApp.MSSQL
+namespace DataLayer.MSSQL
 {
 	public class MSSQLContext : DbContext
 	{

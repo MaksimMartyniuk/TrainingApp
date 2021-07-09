@@ -1,8 +1,8 @@
 ﻿using System;
-using AbstractDataLayer.Enums;
+using DataLayer.Enums;
 
-namespace AbstractDataLayer.BusinessObjects
-{
+namespace DataLayer.BusinessObjects
+{//посмотреть мапинг
 	public class Order : ObjectBase
 	{
 		private DateTime orderDate;

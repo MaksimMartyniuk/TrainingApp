@@ -1,9 +1,9 @@
-﻿using AbstractDataLayer.BusinessObjects;
-using AbstractDataLayer.Factories;
-using AbstractDataLayer.Repositories;
-using MSSQLDataLayer.Repositories;
+﻿using DataLayer.BusinessObjects;
+using DataLayer.Factories;
+using DataLayer.MSSQL.Repositories;
+using DataLayer.Repositories;
 
-namespace MSSQLDataLayer.Factories
+namespace DataLayer.MSSQL.Factories
 {
 	//будет абстрактная фабрика
 	public class MSSQLRepositoryAbstractFactory : IRepositoryAbstractFactory<ObjectBase>

@@ -1,13 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataLayer.BusinessObjects;
+using DataLayer.Helpers;
+using DataLayer.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using TrainingApp.BusinessObjects;
-using TrainingApp.MSSQL;
 
-namespace TrainingApp.Repositories
+namespace DataLayer.MSSQL.Repositories
 {
-	public class OrderEntityMSSQLRepository : IRepository<Order>
+	//поискать метод с генериком для работы с контекстом
+	public class OrderEntityMSSQLRepository : IRepository<ObjectBase>
 	{
+		private Order order;
+
 		private string connectionString;
 
 		public OrderEntityMSSQLRepository(string conn)
@@ -15,15 +19,18 @@ namespace TrainingApp.Repositories
 			connectionString = conn;
 		}
 
-		public void Create(Order item)
+		public void Create(ObjectBase item)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				context.Orders.Add(item);
+				if ((order = ObjectBaseConveter.ToOrder(item)) == null)
+					return;
+
+				context.Orders.Add(order);
 				context.SaveChanges();
 			}
 		}
-		public Order GetObject(Guid id)
+		public ObjectBase GetObject(Guid id)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
@@ -31,11 +38,14 @@ namespace TrainingApp.Repositories
 			}
 		}
 
-		public void Update(Order item)
+		public void Update(ObjectBase item)
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{
-				context.Entry(item).State = EntityState.Modified;
+				if ((order = ObjectBaseConveter.ToOrder(item)) == null)
+					return;
+
+				context.Entry(order).State = EntityState.Modified;
 				context.SaveChanges();
 			}
 		}
@@ -53,7 +63,7 @@ namespace TrainingApp.Repositories
 			}
 		}
 
-		public IEnumerable<Order> GetObjectList()
+		public IEnumerable<ObjectBase> GetObjectList()
 		{
 			using (MSSQLContext context = new MSSQLContext(connectionString))
 			{

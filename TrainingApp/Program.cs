@@ -1,21 +1,22 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using ConsoleUILayer.UI;
+using Microsoft.Extensions.Configuration;
 
 namespace TrainingApp
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
+	/*
+		Разбить на отдельные прокты, типо DataLayer, DataLayer.JSON, DataLayer
+		Factory->Repository->Context есть фабрика, которая создает репозитории, которые создают контескты,
+		при этом строка отправляется в фабрику, а фабрика создает репозитории со строкой
+	*/
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			IConfigurationRoot configuration = new ConfigurationBuilder()
+				.AddJsonFile("appsettings.json")
+				.Build();
 
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-
-            Console.WriteLine(connectionString);
-
-            Console.ReadKey();
-        }
-    }
+			ConsoleDialogsUI.StartDialog(configuration);
+		}
+	}
 }

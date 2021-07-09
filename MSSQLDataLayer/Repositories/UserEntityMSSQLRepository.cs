@@ -25,8 +25,9 @@ namespace MSSQLDataLayer.Repositories
 			{
 				if ((user = ObjectBaseConveter.ToUser(item)) == null)
 					return;
+				context.Set<ObjectBase>().Add(item);
 
-				context.Users.Add(user);
+				//context.Users.Add(user);
 				context.SaveChanges();
 			}
 		}

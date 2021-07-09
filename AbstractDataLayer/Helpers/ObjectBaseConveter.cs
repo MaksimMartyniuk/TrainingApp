@@ -1,7 +1,7 @@
 ﻿
-using AbstractDataLayer.BusinessObjects;
+using DataLayer.BusinessObjects;
 
-namespace AbstractDataLayer.Helpers
+namespace DataLayer.Helpers
 {
 	public static class ObjectBaseConveter
 	{

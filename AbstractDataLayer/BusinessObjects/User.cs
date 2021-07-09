@@ -1,4 +1,4 @@
-﻿namespace AbstractDataLayer.BusinessObjects
+﻿namespace DataLayer.BusinessObjects
 {
 	public class User : ObjectBase
 	{

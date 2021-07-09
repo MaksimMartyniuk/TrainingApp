@@ -1,9 +1,9 @@
-﻿using AbstractDataLayer.BusinessObjects;
+﻿using DataLayer.BusinessObjects;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace JSONDataLayer.JSON
+namespace DataLayer.JSON.JSON
 {
 	// избавиться
 	public static class JSONHelper

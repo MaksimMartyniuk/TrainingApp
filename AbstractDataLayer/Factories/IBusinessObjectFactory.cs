@@ -1,4 +1,4 @@
-﻿namespace AbstractDataLayer.Factories
+﻿namespace DataLayer.Factories
 {
 	public interface IBusinessObjectFactory<T>
 	{

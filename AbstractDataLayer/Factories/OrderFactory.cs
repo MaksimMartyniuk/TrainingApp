@@ -1,6 +1,6 @@
-﻿using AbstractDataLayer.BusinessObjects;
+﻿using DataLayer.BusinessObjects;
 
-namespace AbstractDataLayer.Factories
+namespace DataLayer.Factories
 {
 	public class OrderFactory : IBusinessObjectFactory<ObjectBase>
 	{
