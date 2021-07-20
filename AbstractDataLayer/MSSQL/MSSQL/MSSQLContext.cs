@@ -1,4 +1,4 @@
-﻿using DataLayer.BusinessObjects;
+﻿using DataLayer.MSSQL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.MSSQL
@@ -10,6 +10,7 @@ namespace DataLayer.MSSQL
 		{
 			connectionString = conn;
 			this.Database.EnsureCreated();
+
 		}
 
 		public DbSet<User> Users { get; set; }
@@ -18,7 +19,8 @@ namespace DataLayer.MSSQL
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(connectionString);
+			optionsBuilder
+				.UseSqlServer(connectionString);
 		}
 	}
 }

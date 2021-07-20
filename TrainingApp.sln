@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "AbstractDataLa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayer", "ConsoleLogicLayer\LogicLayer.csproj", "{92BFA8A8-0D6E-4854-8482-1B182D3D34FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainigTests", "TrainigTests\TrainigTests.csproj", "{A3DA7648-EB28-432D-B78E-5B41FF483DBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{92BFA8A8-0D6E-4854-8482-1B182D3D34FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92BFA8A8-0D6E-4854-8482-1B182D3D34FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92BFA8A8-0D6E-4854-8482-1B182D3D34FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3DA7648-EB28-432D-B78E-5B41FF483DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3DA7648-EB28-432D-B78E-5B41FF483DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3DA7648-EB28-432D-B78E-5B41FF483DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3DA7648-EB28-432D-B78E-5B41FF483DBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

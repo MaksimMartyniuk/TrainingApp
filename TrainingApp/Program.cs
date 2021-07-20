@@ -1,5 +1,4 @@
-﻿using ConsoleUILayer.UI;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace TrainingApp
 {
@@ -16,7 +15,6 @@ namespace TrainingApp
 				.AddJsonFile("appsettings.json")
 				.Build();
 
-			ConsoleDialogsUI.StartDialog(configuration);
 		}
 	}
 }
